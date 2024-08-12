@@ -13,4 +13,4 @@
     - name: Write fail log
       validation_check:
         error_msg: "The 'test.yml' playbook does not exist."
-        check: r_hosts.stat.exists
+        check: r_play.stat.exists
