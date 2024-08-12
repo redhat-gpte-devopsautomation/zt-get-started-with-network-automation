@@ -9,7 +9,7 @@ Additionally, developers can use these settings to adapt *ansible-navigator* to 
 
 Let's take a look at some of the common options.
 
-. In the directory */home/rhel* you should see a file called *ansible-navigator.yml*. Open it up and check out the contents. Notice that there are currently some execution environment and logging settings already there.
+. In the directory */home/rhel/ansible-files/* you should see a file called *ansible-navigator.yml*. Open it up and check out the contents. Notice that there are currently some execution environment and logging settings already there.
 
 +
 Developers love the ability to not only run ansible-navigator within the integrated terminal, but I want to be able to pass task output back to my code editor for inspection.

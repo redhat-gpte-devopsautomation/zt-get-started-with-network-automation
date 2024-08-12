@@ -1,15 +1,31 @@
-- name: Basic System Setup
-  hosts: node1
-  become: true
+---
+- name: Solve control node
+  hosts: controller
+  vars:
+    USER: rhel
   tasks:
-    - name: Install security updates for the kernel
-      ansible.builtin.dnf:
-        name: 'kernel'
-        state: latest
-        security: true
+    - name: Create ansible-navigator.yml
+      ansible.builtin.copy:
+        content: |
+          ---
+          ansible-navigator:
+            execution-environment:
+              container-engine: podman
+              image: quay.io/acme_corp/first_playbook_ee:latest
+              enabled: false
+              pull-policy: never
 
-    - name: Create a new user
-      ansible.builtin.user:
-        name: myuser
-        state: present
-        create_home: true
+            playbook-artifact:
+              save-as: /home/rhel/ansible-files/{playbook_name}-artifact-{ts_utc}.json
+
+            logging:
+              level: debug
+
+            editor:
+              command: code-server {filename}
+              console: false
+
+        dest: "/home/{{ USER }}/ansible-files/ansible-navigator.yml"
+        owner: "{{ USER }}"
+        group: "{{ USER }}"
+        mode: "0644"

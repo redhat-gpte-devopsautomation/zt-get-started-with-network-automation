@@ -1,17 +1,22 @@
 ---
 - name: Solve control node
   hosts: controller
-  gather_facts: false
   vars:
     USER: rhel
   tasks:
-    - name: Create hosts
+    - name: Create test.yml
       ansible.builtin.copy:
         content: |
-          [web]
-          node1
-          node2
-        dest: /home/{{ USER }}/ansible-files/inventory
+          ---
+          - name: this is just a test
+            hosts: localhost
+            gather_facts: true
+            tasks:
+
+            - name: ping test
+              ping:
+
+        dest: /home/{{ USER }}/ansible-files/test.yml
         owner: "{{ USER }}"
         group: "{{ USER }}"
         mode: "0644"

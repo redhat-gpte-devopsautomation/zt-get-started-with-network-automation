@@ -34,13 +34,13 @@ ansible-navigator --help
 
 . Now, run it with `ansible-navigator`:
 +
-[source,yaml]
+[source,shell]
 ----
 ansible-navigator run ./test.yml -m stdout
 ----
 +
 .You should be looking at something like this (and looking very much like ansible-playbook output)
-[source,yaml]
+[source,shell]
 ----
 [WARNING]: provided hosts list is empty, only localhost is available. Note that
 the implicit localhost does not match 'all'
@@ -57,5 +57,5 @@ PLAY RECAP *********************************************************************
 localhost : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ----
 
-
++
 NOTE: *-m stdout* will run in standard out mode which will display execution results just like *ansible-playbook*
