@@ -1,2 +1,5 @@
 [controller]
 control
+
+[all:vars]
+ansible_user = rhel
