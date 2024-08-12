@@ -1,7 +1,7 @@
-
-= Exploring the ansible-navigator interface
 :sectnums:
 :experimental:
+= Exploring the ansible-navigator interface
+
 
 In this challenge, we'll explore the https://github.com/ansible/ansible-navigator[ansible-navigator, window=_blank] interface and highlight new features.
 
