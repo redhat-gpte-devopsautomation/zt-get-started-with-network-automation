@@ -1,14 +1,2 @@
 [controller]
 control
-
-[web]
-node1
-node2
-
-[nodes]
-node1
-node2
-node3
-
-[all:vars]
-ansible_user = rhel
