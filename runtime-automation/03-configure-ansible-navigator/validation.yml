@@ -7,7 +7,7 @@
   tasks:
     - name: Get stats of ansible-navigator.yml
       ansible.builtin.command:
-        cmd: grep -Fxq "editor:" /home/{{ USER }}/ansible-files/ansible-navigator.yml
+        cmd: grep -Fxq "  editor:" /home/{{ USER }}/ansible-files/ansible-navigator.yml
       register: r_check_file
       check_mode: false
       ignore_errors: true
