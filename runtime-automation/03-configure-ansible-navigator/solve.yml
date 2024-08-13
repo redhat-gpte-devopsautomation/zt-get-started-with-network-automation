@@ -11,15 +11,16 @@
           ansible-navigator:
             execution-environment:
               container-engine: podman
-              image: quay.io/acme_corp/first_playbook_ee:latest
               enabled: false
-              pull-policy: never
-
-            playbook-artifact:
-              save-as: /home/rhel/ansible-files/{playbook_name}-artifact-{ts_utc}.json
+              image: quay.io/acme_corp/first_playbook_ee:latest
+              pull:
+                policy: never
 
             logging:
               level: debug
+
+            playbook-artifact:
+              save-as: /home/rhel/ansible-files/{playbook_name}-artifact-{time_stamp}.json
 
             editor:
               command: code-server {filename}

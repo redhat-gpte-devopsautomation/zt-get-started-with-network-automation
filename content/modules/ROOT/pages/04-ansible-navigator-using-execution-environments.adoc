@@ -14,19 +14,21 @@ Let's see what happens when we change *ansible-navigator.yml* to use the default
 ansible-navigator:
   execution-environment:
     container-engine: podman
-    image: quay.io/acme_corp/first_playbook_ee:latest
     enabled: true
-    pull-policy: never
-
-  playbook-artifact:
-    save-as: /home/rhel/ansible-files/{playbook_name}-artifact-{ts_utc}.json
+    image: quay.io/acme_corp/first_playbook_ee:latest
+    pull:
+      policy: never
 
   logging:
     level: debug
 
+  playbook-artifact:
+    save-as: /home/rhel/ansible-files/{playbook_name}-artifact-{time_stamp}.json
+
   editor:
     command: code-server {filename}
-    console false
+    console: false
+
 ----
 
 . Re-reun your test playbook:

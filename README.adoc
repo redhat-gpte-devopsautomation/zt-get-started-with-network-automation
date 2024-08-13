@@ -17,36 +17,7 @@ Zero Touch Writing your first playbook lab
 ----
 
 
-. Content Directory
-+
-.tree output
-[source,shell]
-----
-content/modules/ROOT/
-├── assets
-│   └── images                                  # Images used in your content 
-│       ├── collasped.png
-│       ├── end.png
-│       ├── idem-output.png
-│       ├── navigator-output.png
-│       ├── next.png
-│       ├── solve.png
-│       ├── tabs.png
-│       └── vscode_inventory.png
-└── pages                                       # Your content goes here
-    ├── 01-playbook-inventory.adoc              # First page of your lab
-    ├── 02-playbook-directory-structure.adoc
-    ├── 03-playbook-run-it.adoc
-    ├── 04-playbook-multi-node.adoc
-    ├── 05-playbook-variables.adoc
-    ├── 06-playbook-conditionals.adoc
-    ├── 07-handlers.adoc
-    ├── 08-playbook-loops.adoc
-    ├── 09-playbook-templates.adoc
-    └── 10-roles.adoc
-
-----
-. Module Playbook Directory Structure
+. Example: Module Playbook Directory Structure
 +
 .tree output
 [source,shell]
@@ -74,7 +45,7 @@ runtime-automation/
 ----
 
 == Understanding Zero Touch Configration file
-. The *zero-touch-config.yml* configuration file
+. Example: The *zero-touch-config.yml* configuration file
 +
 .tree output
 [source,yaml]
@@ -105,6 +76,7 @@ tabs:
     port: 443
     path: /tty1
 ----
+
 NOTE: Keep the rest of directories and files as default. 
 
 IMPORTANT: This stucture works well with agnosticd role *showroom* .
