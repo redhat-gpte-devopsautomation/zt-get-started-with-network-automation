@@ -1,0 +1,80 @@
+:experimental:
+= Create an Inventory
+
+Create the following in the controller dashboard:
+
+.Login credentials
+----
+User: admin
+Password: ansible123!
+----
+
+
+IMPORTANT: All the fields are *case-sensitive* and the check will fail! Please maske sure you use the same capitalization as used in the assignments.
+
+Besides the automation controller instance, your environment also contains two virtual machines:
+
+* *host01*
+* *host02*
+
+// We've also added extra terminal tabs to these machines, so you can have a look around.
+
+These machines are configured to be able to *ssh* to each other using an ssh key.
+
+== Your assignment
+
+IMPORTANT: All tasks are performed in the automation controller dashboard
+
+. On the side navigation under the *Resources* section, click on *Inventories*
++
+======
+.. Under **Inventories**, click on btn:[Add]
+.. Click btn:[Add inventory].
+.. Create a new Inventory with the name *Lab-Inventory*. Leave all the other fields as-is, and click btn:[Save].
+
++
+.Inventory
+image::https://raw.githubusercontent.com/craig-br/instruqt-tracks/devel/assets/controller/controller-inventory.png[inventory, 70%]
+======
+
+
+. Once you've created the *Lab-Inventory*, click on btn:[Hosts]
++
+======
+.. Click on btn:[Add].
+.. Enter the name *host01* in the *Name* text box. Leave everything else the same, then click btn:[Save].
+.. Repeat the above steps to create *host02*.
+
++
+.Hosts
+image::https://raw.githubusercontent.com/craig-br/instruqt-tracks/devel/assets/controller/controller-hosts.png[host, 70%]
+======
+
+. Once you've added *host01* and *host02* to the *Lab-Inventory* go back to the Inventory list.
++
+======
+.. Click on *Lab-Inventory* and select btn:[Groups] on the top menu.
+.. Click btn:[Add] to create a new group.
+.. Create a new group called *web* in the *Lab-Inventory*.
+.. Click btn:[Save] when you are finished.
++
+.Group
+image::https://raw.githubusercontent.com/craig-br/instruqt-tracks/devel/assets/controller/controller-inst-add-group.png[Groups, 70%]
+======
+
+
+. Click on the newly created *web* group and click on **Hosts** on the top menu.
++
+======
+.. Click *Add existing host*. A pop up will appear.
+.. Select both *host01* and *host02*, then click btn:[Save].
+.. *host01* and *host02* are now added to the *web* group.
+
++
+.Hosts
+image::https://raw.githubusercontent.com/craig-br/instruqt-tracks/devel/assets/controller/controller-inst-add-hosts-group.png[Hosts, 70%]
+======
+
+
+
+NOTE: When you are done, press the image:next.png[Next, 50] button below to go to the next challenge.

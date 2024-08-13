@@ -1,5 +1,9 @@
 [controller]
 control
 
+[nodes]
+host01
+host02
+
 [all:vars]
 ansible_user = rhel

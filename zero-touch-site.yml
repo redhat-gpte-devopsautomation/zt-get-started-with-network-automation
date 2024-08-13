@@ -1,8 +1,8 @@
 ---
 site:
-  title: "Writing you first playbook"
+  title: "Getting Started with Automation Controller"
   url: https://demo.redhat.com/course-template
-  start_page: modules::01-playbook-inventory.adoc
+  start_page: modules::01-dashboard.adoc
 
 content:
   sources:

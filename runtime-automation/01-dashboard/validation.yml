@@ -10,7 +10,7 @@
         path: /home/{{ USER }}/ansible-files/test.yml
       register: r_play
 
-    - name: Write fail log
-      validation_check:
-        error_msg: "The 'test.yml' playbook does not exist."
-        check: r_play.stat.exists
+    # - name: Write fail log
+    #   validation_check:
+    #     error_msg: "The 'test.yml' playbook does not exist."
+    #     check: r_play.stat.exists

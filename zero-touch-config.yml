@@ -4,26 +4,21 @@ antora:
   name: modules
   dir: www
   modules:
-    - name: 01-ansible-navigator-intro
-      label: Introduce the environment
+    - name: 01-dashboard
+      label: Controller Dashboard
       solveButton: true
-    - name: 02-ansible-navigator-explore-ui
-      label: Exploring the ansible-navigator interface
+    - name: 02-inventory
+      label: Create an Inventory
       solveButton: true
-    - name: 03-configure-ansible-navigator
-      label: Configuring common ansible-navigator options
+    - name: 03-controller-getting-started-jt
+      label: Using job templates
       solveButton: true
-    - name: 04-ansible-navigator-using-execution-environments
-      label: Using execution environments
-      solveButton: true
-    - name: 05-navigator-quiz
-      label: Knowledge check
-      solveButton: true
-
 
 tabs:
+  - name: Controller
+    port: 8443
   - name: VSCode Editor
     port: 8443
-    path: /?folder=/home/rhel/ansible-files/
+    path: /editor/?folder=/home/rhel/ansible-files/
 
   
