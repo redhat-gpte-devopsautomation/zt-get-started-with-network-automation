@@ -18,6 +18,9 @@ tabs:
   - name: Controller
     port: 8443
     path: /#/login
+  - name: ">_control"
+    port: 443
+    path: /tty1
   - name: VSCode Editor
     port: 8443
     path: /editor/?folder=/home/rhel
