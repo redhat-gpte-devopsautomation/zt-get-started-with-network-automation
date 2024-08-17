@@ -4,14 +4,38 @@ antora:
   name: modules
   dir: www
   modules:
-    - name: 01-dashboard
-      label: Controller Dashboard
+    - name: 01-intro
+      label: Intro to the Laboratory
       solveButton: true
-    - name: 02-inventory
-      label: Create an Inventory
+    - name: 02-dashboard
+      label: 1.0 - Exploring the web-UI and Dashboard
       solveButton: true
-    - name: 03-controller-getting-started-jt
-      label: Using job templates
+    - name: 03-inventory
+      label: 1.1 - Creating an Inventory
+      solveButton: true
+    - name: 04-project
+      label: 1.2 - Creating your first Project
+      solveButton: true
+    - name: 05-credentials
+      label: 1.3 - Get to know Credentials
+      solveButton: true
+    - name: 06-template
+      label: 1.4 - Creating a Job Template
+      solveButton: true
+    - name: 07-project-additional
+      label: 1.5 - Creating a second Project
+      solveButton: true
+    - name: 08-template-extended
+      label: 1.6 - Creating a second and third Job Templates
+      solveButton: true
+    - name: 09-workflow
+      label: 1.7 - Creating a Workflow Job Template
+      solveButton: true
+    - name: 10-template-survey
+      label: '1.8 - BONUS: Creating a Job Template with a Survey'
+      solveButton: true
+    - name: 11-recap-review
+      label: Recap and review
       solveButton: true
 
 tabs:
@@ -21,9 +45,6 @@ tabs:
   - name: VSCode Editor
     port: 8443
     path: /editor/?folder=/home/rhel/ansible-files/
-  - name: ">_Control CLI"
+  - name: ">_Controller CLI"
     port: 443
     path: /tty1
-
-
-  
