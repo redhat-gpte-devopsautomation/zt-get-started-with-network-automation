@@ -69,7 +69,7 @@ NOTE: In the btn:[Controller] tab
 . It reports the playbook couldn't find the destination hosts or group in the inventory
 . Try to fix it. You need a *database* group in the inventory and to add a *node3* to it.
 . Re run the Workflow.
-. If you are having trouble solving it, you can Skip and it will be solved for you.
+. If you are having trouble solving it, you can image:solve.png[Solve, 40] and it will be solved for you.
 =====
 ======
 

@@ -60,7 +60,23 @@ NOTE: In the btn:[Controller] tab
 . You can launch it from this list, by clicking the *Rocket* icon, or
 . You can click on the *Install Apache with Survey* template and then click the *Launch* button at the bottom.
 . Enter your name at the pop-up.
-. Verify the execution was successful by visiting the *Node1 Web* tab in the top left of the screen, you should see the Apache message with your name.
+. Verify the execution was successful by visiting the btn:[>_Controller CLI] tab in the top right of the screen
+* Type the following command:
++
+[source,shell]
+----
+curl http://node1
+----
++
+.You should see similar Output:
+[source,text]
+----
+<body>
+<h1>This is a production webserver, take care!</h1>
+<p>Congratulations Skippy Mitesh, you deployed Apache successfully!</p>
+</body>
+----
+
 =====
 ======
 

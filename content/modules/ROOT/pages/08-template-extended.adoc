@@ -46,7 +46,7 @@ NOTE: In the btn:[Controller] tab
 . The execution should have failed. Why did it fail? Read the output message.
 .  We are missing the *node3* server and the *[database]* group in our *Lab-Inventory*. Create them applying what you learned earlier.
 . Launch the Job again and verify it succeeds.
-. If you are having trouble with this step, move ahead to the next tasks and at the end use the *Skip* button instead of *Check*
+. If you are having trouble with this step, move ahead to the next tasks and at the end use the image:solve.png[Solve, 40] button instead of *Check*
 =====
 ======
 

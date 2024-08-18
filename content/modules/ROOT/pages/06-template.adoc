@@ -50,10 +50,27 @@ NOTE: In the btn:[Controller] tab
 =====
 NOTE: In the btn:[>_Controller CLI] tab
 
-TODO
-1. In the tab bar at the top left of your screen you will find *Node1 Web* and *Node2 Web* tabs.
-2. Click on *Node1 Web*, check the message
-3. Click on *Node2 Web*, check the message
+. Verify the execution was successful by visiting the btn:[>_Controller CLI] tab in the top right of the screen
+* Type the following command:
++
+[source,shell]
+----
+curl http://node1
+----
++
+[source,shell]
+----
+curl http://node2
+----
++
+.You should see similar Output:
+[source,text]
+----
+<body>
+<h1>This is a production webserver, take care!</h1>
+</body>
+----
+
 =====
 ======
 
