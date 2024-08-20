@@ -4,6 +4,17 @@
   vars:
     USER: rhel
   tasks:
-    - name: Print msg
-      ansible.builtin.debug:
-        msg: "Setup has completed"
+    - name: Check your first Project from git
+      awx.awx.project:
+        name: "Apache playbooks"
+        organization: Default
+        state: present
+        scm_type: git
+        scm_url: https://github.com/leogallego/instruqt-wyfp.git
+      check_mode: true
+      register: check_proj
+
+    - name: Validate groups and nodes in the inventory
+      validation_check:
+        error_msg: "The Project 'Apache playbooks' does not exists"
+        check: not check_proj.changed
