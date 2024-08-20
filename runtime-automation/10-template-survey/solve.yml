@@ -44,7 +44,8 @@
                 "question_name": "What’s your name?",
                 "type": "text",
                 "variable": "student_name",
-                "required": false
+                "required": false,
+                "default": "Skippy"
               }
             ]
           }
