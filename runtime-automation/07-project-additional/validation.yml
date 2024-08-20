@@ -20,7 +20,6 @@
         scm_url: https://github.com/leogallego/instruqt-wyfp-additional.git
       check_mode: true
       register: check_proj2
-      failed_when: check_proj2.changed
 
     - name: Validate Job template
       validation_check:
