@@ -27,4 +27,3 @@
       validation_check:
         error_msg: "The 'Install Apache' Job template does not exists"
         check: not check_jt_apache.changed
-

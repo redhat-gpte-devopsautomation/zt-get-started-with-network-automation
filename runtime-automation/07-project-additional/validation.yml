@@ -3,7 +3,26 @@
   hosts: controller
   vars:
     USER: rhel
+  environment:
+    CONTROLLER_HOST: https://localhost:8443
+    CONTROLLER_USERNAME: admin
+    CONTROLLER_PASSWORD: ansible123!
+    CONTROLLER_VERIFY_SSL: false
+
   tasks:
-    - name: Print msg
-      ansible.builtin.debug:
-        msg: "Setup has completed"
+
+    - name: Check an additional Project from git
+      awx.awx.project:
+        name: "Additional playbooks"
+        organization: Default
+        state: present
+        scm_type: git
+        scm_url: https://github.com/leogallego/instruqt-wyfp-additional.git
+      check_mode: true
+      register: check_proj2
+      failed_when: check_proj2.changed
+
+    - name: Validate Job template
+      validation_check:
+        error_msg: "The 'Install Apache' Job template does not exists"
+        check: not check_proj2.changed
