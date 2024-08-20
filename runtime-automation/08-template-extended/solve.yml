@@ -11,6 +11,35 @@
     CONTROLLER_VERIFY_SSL: false
 
   tasks:
+
+    - name: Add node3 to Lab-Inventory
+      awx.awx.host:
+        name: node3
+        inventory: Lab-Inventory
+        state: present
+
+    - name: Create database group and add node3
+      awx.awx.group:
+        name: database
+        inventory: Lab-Inventory
+        hosts:
+          - node3
+
+    - name: Create Extended services Job Template
+      awx.awx.job_template:
+        name: "Extended services"
+        organization: Default
+        state: present
+        inventory: Lab-Inventory
+        become_enabled: true
+        playbook: extended_services.yml
+        project: "Additional playbooks"
+        credential: lab-credentials
+
+    - name: Launch the Extended services Job Template
+      awx.awx.job_launch:
+        job_template: "Extended services"
+
     - name: Create set motd Job Template
       awx.awx.job_template:
         name: "Set motd"
@@ -25,4 +54,3 @@
     - name: Launch the set motd Job Template
       awx.awx.job_launch:
         job_template: "Set motd"
-
