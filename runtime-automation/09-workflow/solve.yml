@@ -1,9 +1,41 @@
 ---
+
 - name: Solve control node
   hosts: controller
   vars:
     USER: rhel
+  environment:
+    CONTROLLER_HOST: https://localhost:8443
+    CONTROLLER_USERNAME: admin
+    CONTROLLER_PASSWORD: ansible123!
+    CONTROLLER_VERIFY_SSL: false
+
   tasks:
-    - name: Print msg
-      ansible.builtin.debug:
-        msg: "Setup has completed"
+    - name: Add node3 to Lab-Inventory
+      awx.awx.host:
+        name: node3
+        inventory: Lab-Inventory
+        state: present
+
+    - name: Create database group and add node3
+      awx.awx.group:
+        name: database
+        inventory: Lab-Inventory
+        hosts:
+          - node3
+
+    - name: Create Extended services Job Template
+      awx.awx.job_template:
+        name: "Extended services"
+        organization: Default
+        state: present
+        inventory: Lab-Inventory
+        become_enabled: true
+        playbook: extended_services.yml
+        project: "Additional playbooks"
+        credential: lab-credentials
+
+    - name: Launch the Extended services Job Template
+      awx.awx.job_launch:
+        job_template: "Extended services"
+      register: job_extended
