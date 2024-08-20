@@ -4,19 +4,6 @@
   hosts: controller
   vars:
     USER: rhel
-    apache_template_survey: >-
-      {
-        "name": "Apache Survey",
-        "description": "Configure page with username",
-        "spec": [
-          {
-            "question_name": "What’s your name?",
-            "type": "text",
-            "variable": "student_name",
-            "required": false
-          }
-        ]
-      }
   environment:
     CONTROLLER_HOST: https://localhost:8443
     CONTROLLER_USERNAME: admin
