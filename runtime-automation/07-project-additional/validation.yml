@@ -24,5 +24,5 @@
 
     - name: Validate Job template
       validation_check:
-        error_msg: "The 'Install Apache' Job template does not exists"
+        error_msg: "The Project 'Additional playbooks' does not exists"
         check: not check_proj2.changed
