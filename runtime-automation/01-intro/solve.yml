@@ -3,6 +3,12 @@
   hosts: controller
   vars:
     USER: rhel
+  vars:
+    controller_host: localhost:8443
+    controller_user: admin
+    controller_pass: ansible123!
+    inventory_name: Lab-Inventory
+    credentials_name: lab-credentials
   tasks:
     - name: Print msg
       ansible.builtin.debug:
