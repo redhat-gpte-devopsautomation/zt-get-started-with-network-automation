@@ -1,9 +1,30 @@
 ---
+
 - name: Solve control node
   hosts: controller
   vars:
     USER: rhel
+  environment:
+    CONTROLLER_HOST: https://localhost:8443
+    CONTROLLER_USERNAME: admin
+    CONTROLLER_PASSWORD: ansible123!
+    CONTROLLER_VERIFY_SSL: false
+
   tasks:
-    - name: Print msg
-      ansible.builtin.debug:
-        msg: "Setup has completed"
+    - name: Create a Job Template with Survey
+      awx.awx.job_template:
+        name: "Install Apache with Survey"
+        organization: "Default"
+        state: "present"
+        inventory: "Lab-Inventory"
+        become_enabled: true
+        playbook: "apache_template.yml"
+        project: "Apache playbooks"
+        credential: lab-credentials
+        survey_enabled: true
+        survey_spec: "{{ lookup('file', 'files/apache_survey.json') }}"
+
+    - name: Launch the Apache Job Template with Survey
+      awx.awx.job_launch:
+        job_template: "Install Apache with Survey"
+      register: job_apache_survey
