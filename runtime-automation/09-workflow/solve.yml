@@ -60,4 +60,5 @@
     - name: Launch the Apache Job Template with Survey
       awx.awx.workflow_launch:
         workflow_template: "Your first workflow"
+        wait: false
       register: job_your_first_workflow
