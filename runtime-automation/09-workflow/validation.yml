@@ -3,7 +3,89 @@
   hosts: controller
   vars:
     USER: rhel
+  environment:
+    CONTROLLER_HOST: https://localhost:8443
+    CONTROLLER_USERNAME: admin
+    CONTROLLER_PASSWORD: ansible123!
+    CONTROLLER_VERIFY_SSL: false
+
   tasks:
-    - name: Print msg
-      ansible.builtin.debug:
-        msg: "Setup has completed"
+    - name: Check node3 to Lab-Inventory
+      awx.awx.host:
+        name: node3
+        inventory: Lab-Inventory
+        state: present
+      check_mode: true
+      register: check_inv_host3
+
+    - name: Validate node
+      validation_check:
+        error_msg: "The 'node3' does not exists"
+        check: not check_inv_host3.changed
+
+    - name: Check database group and add host
+      awx.awx.group:
+        name: database
+        inventory: Lab-Inventory
+        hosts:
+          - node3
+      check_mode: true
+      register: check_inv_grp_db
+
+    - name: Validate group and node
+      validation_check:
+        error_msg: "The 'database group and node' does not exists"
+        check: not check_inv_grp_db.changed
+
+    - name: Create a Workflow Template
+      awx.awx.workflow_job_template:
+        name: Your first workflow
+        description: Create a Workflow from previous Job Templates
+        organization: Default
+        inventory: Lab-Inventory
+        workflow_nodes:
+          - identifier: "Install Apache"
+            unified_job_template:
+              organization:
+                name: Default
+              name: "Install Apache"
+              type: job_template
+            credentials: []
+            related:
+              success_nodes:
+                - identifier: "Extended services"
+                - identifier: "Set motd"
+              failure_nodes: []
+              always_nodes: []
+              credentials: []
+          - identifier: "Extended services"
+            unified_job_template:
+              organization:
+                name: Default
+              name: "Extended services"
+              type: job_template
+            credentials: []
+            related:
+              success_nodes: []
+              failure_nodes: []
+              always_nodes: []
+              credentials: []
+          - identifier: "Set motd"
+            unified_job_template:
+              organization:
+                name: Default
+              name: "Set motd"
+              type: job_template
+            credentials: []
+            related:
+              success_nodes: []
+              failure_nodes: []
+              always_nodes: []
+              credentials: []
+      check_mode: true
+      register: check_workflow
+
+    - name: Validate Job Workfloaw
+      validation_check:
+        error_msg: "The Job Workflow template 'Your first workflow' does not exists"
+        check: not check_workflow.changed
