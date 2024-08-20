@@ -13,14 +13,20 @@
             path: /tmp/controller_license_manifest.zip
             state: absent
 
-        - name: Unregister node
-          community.general.redhat_subscription:
-            state: absent
+        - name: Stop register warning
+          ansible.builtin.replace:
+            path: /etc/yum/pluginconf.d/subscription-manager.conf
+            regexp: 'enabled.*$'
+            replace: 'enabled = 0'
 
-        - name: Uninstall katello package
-          ansible.builtin.dnf:
-            name: katello-ca-consumer-demosat-capsule-01.infra.demo.redhat.com-1.0-1.noarch
-            state: absent
+        # - name: Unregister node
+        #   community.general.redhat_subscription:
+        #     state: absent
+
+        # - name: Uninstall katello package
+        #   ansible.builtin.dnf:
+        #     name: katello-ca-consumer-demosat-capsule-01.infra.demo.redhat.com-1.0-1.noarch
+        #     state: absent
 
         - name: Stop register warning
           ansible.builtin.replace:
