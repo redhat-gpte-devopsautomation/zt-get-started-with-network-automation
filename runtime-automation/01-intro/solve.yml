@@ -7,3 +7,13 @@
     - name: Print msg
       ansible.builtin.debug:
         msg: "Setup has completed"
+
+    - name: Create an inventory in automation controller
+      awx.awx.inventory:
+        name: Lab-Inventory
+        organization: Default
+      tags:
+        - solve-inventory
+        - solve-inventory-all
+        - solve-workflow
+        - solve-all
