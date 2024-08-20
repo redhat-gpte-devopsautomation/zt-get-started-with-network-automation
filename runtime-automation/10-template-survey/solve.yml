@@ -4,6 +4,19 @@
   hosts: controller
   vars:
     USER: rhel
+    apache_template_survey: >-
+      {
+        "name": "Apache Survey",
+        "description": "Configure page with username",
+        "spec": [
+          {
+            "question_name": "What’s your name?",
+            "type": "text",
+            "variable": "student_name",
+            "required": false
+          }
+        ]
+      }
   environment:
     CONTROLLER_HOST: https://localhost:8443
     CONTROLLER_USERNAME: admin
@@ -22,8 +35,19 @@
         project: "Apache playbooks"
         credential: lab-credentials
         survey_enabled: true
-        survey_spec: "{{ lookup('file', 'files/apache_survey.json') }}"
-
+        survey_spec: >-
+          {
+            "name": "Apache Survey",
+            "description": "Configure page with username",
+            "spec": [
+              {
+                "question_name": "What’s your name?",
+                "type": "text",
+                "variable": "student_name",
+                "required": false
+              }
+            ]
+          }
     - name: Launch the Apache Job Template with Survey
       awx.awx.job_launch:
         job_template: "Install Apache with Survey"
