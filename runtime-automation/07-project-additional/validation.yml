@@ -21,7 +21,7 @@
       check_mode: true
       register: check_proj2
 
-    - name: Validate Job template
+    - name: Validate Project
       validation_check:
         error_msg: "The Project 'Additional playbooks' does not exists"
         check: not check_proj2.changed

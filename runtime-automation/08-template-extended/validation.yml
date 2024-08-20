@@ -3,7 +3,45 @@
   hosts: controller
   vars:
     USER: rhel
+  environment:
+    CONTROLLER_HOST: https://localhost:8443
+    CONTROLLER_USERNAME: admin
+    CONTROLLER_PASSWORD: ansible123!
+    CONTROLLER_VERIFY_SSL: false
+
   tasks:
-    - name: Print msg
-      ansible.builtin.debug:
-        msg: "Setup has completed"
+    - name: Check extended services Job Template
+      awx.awx.job_template:
+        name: "Extended services"
+        organization: Default
+        state: present
+        inventory: Lab-Inventory
+        become_enabled: true
+        playbook: extended_services.yml
+        project: "Additional playbooks"
+        credential: lab-credentials
+      check_mode: true
+      register: check_jt_ext
+
+    - name: Validate Job template
+      validation_check:
+        error_msg: "The Job template 'Extended services' does not exists"
+        check: not check_jt_ext.changed
+
+    - name: Check a motd Job Template
+      awx.awx.job_template:
+        name: "Set motd"
+        organization: Default
+        state: present
+        inventory: Lab-Inventory
+        become_enabled: true
+        playbook: motd_facts.yml
+        project: "Additional playbooks"
+        credential: lab-credentials
+      check_mode: true
+      register: check_jt_motd
+
+    - name: Validate Job template
+      validation_check:
+        error_msg: "The Job template 'Set motd' does not exists"
+        check: not check_jt_motd.changed
