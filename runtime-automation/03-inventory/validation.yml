@@ -8,3 +8,52 @@
     CONTROLLER_USERNAME: admin
     CONTROLLER_PASSWORD: ansible123!
     CONTROLLER_VERIFY_SSL: false
+
+  tasks:
+
+    - name: Check inventory
+      awx.awx.inventory:
+        name: Lab-Inventory
+        organization: Default
+        kind: ""
+      check_mode: true
+      register: check_inv
+      # failed_when: check_inv.changed
+
+    - name: Validate inventory
+      validation_check:
+        error_msg: "The 'Lab-Inventory' does not exists"
+        check: check_inv.changed
+
+    - name: Check node1 and node2 in Lab-Inventory
+      awx.awx.host:
+        name: "{{ item }}"
+        inventory: Lab-Inventory
+        state: present
+      loop:
+        - node1
+        - node2
+      check_mode: true
+      register: check_inv_hosts
+      # failed_when: check_inv_hosts.changed
+
+    - name: Validate nodes in the inventory
+      validation_check:
+        error_msg: "The 'nodes' does not exists"
+        check: check_inv_hosts.changed
+
+    - name: Check web group and add hosts
+      awx.awx.group:
+        name: web
+        inventory: Lab-Inventory
+        hosts:
+          - node1
+          - node2
+      check_mode: true
+      register: check_inv_group
+      # failed_when: check_inv_group.changed
+
+    - name: Validate groups and nodes in the inventory
+      validation_check:
+        error_msg: "The 'nodes' does not exists"
+        check: check_inv_group.changed
