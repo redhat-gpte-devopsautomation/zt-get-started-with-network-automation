@@ -18,7 +18,7 @@
         organization: Default
         inventory: Lab-Inventory
         workflow_nodes:
-          - identifier: apache101
+          - identifier: "Install Apache"
             unified_job_template:
               organization:
                 name: Default
@@ -27,12 +27,12 @@
             credentials: []
             related:
               success_nodes:
-                - identifier: extended201
-                - identifier: motd201
+                - identifier: "Extended services"
+                - identifier: "Set motd"
               failure_nodes: []
               always_nodes: []
               credentials: []
-          - identifier: extended201
+          - identifier: "Extended services"
             unified_job_template:
               organization:
                 name: Default
@@ -44,7 +44,7 @@
               failure_nodes: []
               always_nodes: []
               credentials: []
-          - identifier: motd201
+          - identifier: "Set motd"
             unified_job_template:
               organization:
                 name: Default
