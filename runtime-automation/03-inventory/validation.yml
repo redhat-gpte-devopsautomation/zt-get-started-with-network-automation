@@ -55,5 +55,5 @@
 
     - name: Validate groups and nodes in the inventory
       validation_check:
-        error_msg: "The 'nodes' does not exists"
+        error_msg: "The 'web group and nodes' does not exists"
         check: not check_inv_group.changed
