@@ -58,6 +58,6 @@
               credentials: []
 
     - name: Launch the Apache Job Template with Survey
-      awx.awx.job_launch:
+      awx.awx.workflow_launch:
         job_template: "Your first workflow"
       register: job_your_first_workflow
