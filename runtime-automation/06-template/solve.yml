@@ -1,9 +1,28 @@
 ---
+
 - name: Solve control node
   hosts: controller
   vars:
     USER: rhel
+  environment:
+    CONTROLLER_HOST: https://localhost:8443
+    CONTROLLER_USERNAME: admin
+    CONTROLLER_PASSWORD: ansible123!
+    CONTROLLER_VERIFY_SSL: false
+
   tasks:
-    - name: Print msg
-      ansible.builtin.debug:
-        msg: "Setup has completed"
+    - name: Create install apache Job Template
+      awx.awx.job_template:
+        name: "Install Apache"
+        organization: Default
+        state: present
+        inventory: Lab-Inventory
+        become_enabled: true
+        playbook: apache.yml
+        project: Apache playbooks
+        credential: lab-credentials
+
+    - name: Launch the Apache Job Template
+      awx.awx.job_launch:
+        job_template: "Install Apache"
+      register: job_apache

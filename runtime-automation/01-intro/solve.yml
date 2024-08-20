@@ -3,14 +3,7 @@
   hosts: controller
   vars:
     USER: rhel
-  environment:
-    CONTROLLER_HOST: https://localhost:8443
-    CONTROLLER_USERNAME: admin
-    CONTROLLER_PASSWORD: 'ansible123!'
-    CONTROLLER_VERIFY_SSL: false
   tasks:
-    - name: Create an inventory in automation controller
-      awx.awx.inventory:
-        name: Lab-Inventory
-        organization: Default
-
+    - name: Print msg
+      ansible.builtin.debug:
+        msg: "Setup has completed"
