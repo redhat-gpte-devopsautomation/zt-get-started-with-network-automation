@@ -3,7 +3,28 @@
   hosts: controller
   vars:
     USER: rhel
+  environment:
+    CONTROLLER_HOST: https://localhost:8443
+    CONTROLLER_USERNAME: admin
+    CONTROLLER_PASSWORD: ansible123!
+    CONTROLLER_VERIFY_SSL: false
+
   tasks:
-    - name: Print msg
-      ansible.builtin.debug:
-        msg: "Setup has completed"
+    - name: Check Apache Job Template
+      awx.awx.job_template:
+        name: "Install Apache"
+        organization: Default
+        state: present
+        inventory: Lab-Inventory
+        become_enabled: true
+        playbook: apache.yml
+        project: Apache playbooks
+        credential: lab-credentials
+      check_mode: true
+      register: check_jt_apache
+
+    - name: Validate Job template
+      validation_check:
+        error_msg: "The 'Install Apache' Job template does not exists"
+        check: not check_jt_apache.changed
+

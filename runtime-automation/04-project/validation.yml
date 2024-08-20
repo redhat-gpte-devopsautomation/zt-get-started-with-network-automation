@@ -20,7 +20,7 @@
       check_mode: true
       register: check_proj
 
-    - name: Validate groups and nodes in the inventory
+    - name: Validate Project
       validation_check:
         error_msg: "The Project 'Apache playbooks' does not exists"
         check: not check_proj.changed
